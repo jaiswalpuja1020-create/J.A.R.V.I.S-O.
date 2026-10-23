@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.A.R.V.I.S.-O — Pure Vanilla JS Holographic Command Center</title>
+  <link rel="stylesheet" href="/css/jarvis-hud.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#020b18] text-[#8ae8ff] min-h-screen flex flex-col font-sans select-none">
+
+  <!-- Top Header Navigation -->
+  <header class="border-b border-[#00bfff33] bg-[#020b18cc] backdrop-blur-md px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full border border-[#00bfff] flex items-center justify-center shadow-[0_0_15px_#00bfff]">
+        <span class="text-xs font-bold text-white">J</span>
+      </div>
+      <div>
+        <h1 class="text-base font-bold tracking-widest text-white uppercase">J.A.R.V.I.S.-O</h1>
+        <p class="text-[10px] tracking-wider text-cyan-400">MARK LXXXV OPERATING SYSTEM</p>
+      </div>
+    </div>
+
+    <!-- Center Mode / Engine Badge -->
+    <div class="flex items-center gap-2 px-3 py-1 bg-cyan-950/40 border border-cyan-500/40 rounded-full text-xs">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-cyan-300 font-mono text-[11px]">STANDALONE VANILLA JS ENGINE</span>
+      <span class="text-slate-500">|</span>
+      <a href="/" class="text-cyan-400 hover:text-white underline text-[11px]">Next.js Mode</a>
+    </div>
+
+    <!-- Right Telemetry -->
+    <div class="flex items-center gap-4 text-xs font-mono">
+      <span id="starkTime" class="text-cyan-400">--:--:-- UTC</span>
+      <div class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 text-[11px]">
+        CORE ONLINE
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Three-Column HUD Layout -->
+  <div class="flex-1 max-w-[1700px] w-full mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- Left Column: Navigation & Suit Status (2.5 cols) -->
+    <aside class="lg:col-span-3 flex flex-col gap-4">
+      <div class="hud-glass-panel p-5">
+        <h2 class="text-xs uppercase tracking-widest text-cyan-400 mb-3 font-semibold">Tactical Systems</h2>
+        <div class="space-y-2">
+          <button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-cyan-500/20 border border-cyan-400/50 text-white text-xs font-medium">
+            <span>Primary Core</span>
+            <span class="text-[10px] font-mono text-cyan-300">ONLINE</span>
+          </button>
+          <button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#051429] hover:bg-cyan-900/30 border border-cyan-500/20 text-slate-300 hover:text-white text-xs transition">
+            <span>Flight Diagnostics</span>
+            <span class="text-[10px] font-mono text-emerald-400">100%</span>
+          </button>
+          <button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#051429] hover:bg-cyan-900/30 border border-cyan-500/20 text-slate-300 hover:text-white text-xs transition">
+            <span>Defense Protocols</span>
+            <span class="text-[10px] font-mono text-cyan-400">ARMED</span>
+          </button>
+          <button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#051429] hover:bg-cyan-900/30 border border-cyan-500/20 text-slate-300 hover:text-white text-xs transition">
+            <span>Repulsor Telemetry</span>
+            <span class="text-[10px] font-mono text-cyan-400">CHARGED</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Suit Status Card -->
+      <div class="hud-glass-panel p-5">
+        <h2 class="text-xs uppercase tracking-widest text-cyan-400 mb-3 font-semibold">Suit Diagnostics</h2>
+        <div class="space-y-3 text-xs font-mono">
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-slate-400">Palladium Core Output</span>
+              <span class="text-cyan-300">100%</span>
+            </div>
+            <div class="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden">
+              <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-full"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-slate-400">Armor Integrity</span>
+              <span class="text-emerald-300">98.4%</span>
+            </div>
+            <div class="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden">
+              <div class="bg-emerald-400 h-full w-[98%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-slate-400">Thermal Gradient</span>
+              <span class="text-amber-300">12.7°C</span>
+            </div>
+            <div class="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden">
+              <div class="bg-amber-400 h-full w-[15%]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center Column: Arc Reactor Hologram & Quick Command Center (6 cols) -->
+    <main class="lg:col-span-6 flex flex-col items-center justify-between">
+      
+      <!-- Central Arc Reactor Stage -->
+      <div class="w-full flex flex-col items-center justify-center py-6 relative">
+        
+        <!-- Arc Reactor SVG -->
+        <div class="reactor-container">
+          <svg viewBox="0 0 400 400" class="w-full h-full filter drop-shadow-[0_0_35px_#00bfff]">
+            <!-- Outer segmented technical ring -->
+            <circle cx="200" cy="200" r="185" fill="none" stroke="#00bfff" stroke-width="2" stroke-dasharray="6 8" opacity="0.4" class="spin-clockwise" />
+            <circle cx="200" cy="200" r="165" fill="none" stroke="#00e5ff" stroke-width="3" stroke-dasharray="14 10" opacity="0.7" class="spin-counter" />
+            
+            <!-- 8 Mechanical Magnet Coils -->
+            <g class="spin-clockwise">
+              <rect x="190" y="25" width="20" height="28" rx="4" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+              <rect x="190" y="347" width="20" height="28" rx="4" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+              <rect x="25" y="190" width="28" height="20" rx="4" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+              <rect x="347" y="190" width="28" height="20" rx="4" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+              <rect x="75" y="75" width="22" height="22" rx="4" transform="rotate(45 86 86)" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+              <rect x="290" y="290" width="22" height="22" rx="4" transform="rotate(45 301 301)" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+              <rect x="75" y="300" width="22" height="22" rx="4" transform="rotate(-45 86 311)" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+              <rect x="300" y="75" width="22" height="22" rx="4" transform="rotate(-45 311 86)" fill="#031633" stroke="#00e5ff" stroke-width="2" />
+            </g>
+
+            <!-- Inner glowing energy core -->
+            <circle cx="200" cy="200" r="75" fill="url(#coreGradient)" class="pulse-glow" />
+            <circle cx="200" cy="200" r="45" fill="#ffffff" opacity="0.9" filter="drop-shadow(0 0 20px #00e5ff)" />
+            
+            <defs>
+              <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="50%" stop-color="#00e5ff" />
+                <stop offset="100%" stop-color="#003366" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- 6 Interactive Holographic Callout Capsules -->
+        <div class="w-full flex flex-wrap justify-center gap-3 mt-6">
+          <button data-prompt="Report suit armor integrity" class="callout-bubble bubble-left">
+            <span>Ask me anything...</span>
+          </button>
+          <button data-prompt="Search the web for latest Stark tech" class="callout-bubble">
+            <span>Search the web...</span>
+          </button>
+          <button data-prompt="List active defense protocols" class="callout-bubble bubble-right">
+            <span>Use my tools...</span>
+          </button>
+          <button data-prompt="What time is it in Tokyo?" class="callout-bubble bubble-left">
+            <span>Stark Clock...</span>
+          </button>
+          <button data-prompt="Calculate sqrt(144) * 5" class="callout-bubble">
+            <span>Tactical Math...</span>
+          </button>
+          <button data-prompt="Hello J.A.R.V.I.S., status report" class="callout-bubble bubble-right">
+            <span>Let's get started...</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Chat Transcript Stream -->
+      <div id="chatMessages" class="w-full hud-glass-panel p-4 my-4 max-h-[220px] overflow-y-auto space-y-2">
+        <div class="p-3 rounded-lg text-sm bg-[#06152b]/80 border border-cyan-500/30 text-[#8ae8ff]">
+          <div class="text-[10px] text-cyan-400 mb-1 font-mono">J.A.R.V.I.S.-O [CORE ACTIVE]</div>
+          Good day, Sir. All holographic command matrices and speech synthesizers are synchronized. What is your directive?
+        </div>
+      </div>
+
+      <!-- Bottom Voice Console & Mic -->
+      <div class="w-full space-y-2">
+        <div class="voice-composer">
+          <button id="micBtn" class="mic-btn-glowing" title="Activate Voice Comms">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+              <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+            </svg>
+          </button>
+          
+          <input 
+            type="text" 
+            id="chatInput" 
+            placeholder="Give a command to J.A.R.V.I.S.-O..." 
+            class="flex-1 bg-transparent border-none outline-none text-white text-sm placeholder-slate-400"
+          />
+
+          <button id="sendBtn" class="px-5 py-2 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition">
+            Execute
+          </button>
+        </div>
+
+        <div id="statusStrip" class="text-center font-mono text-[11px] text-cyan-400">
+          Listening • Click to speak -------
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Column: Providers, History & Languages (3 cols) -->
+    <aside class="lg:col-span-3 flex flex-col gap-4">
+      
+      <!-- Providers Matrix -->
+      <div class="hud-glass-panel p-5">
+        <h2 class="text-xs uppercase tracking-widest text-cyan-400 mb-3 font-semibold">AI Neural Engines</h2>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center justify-between p-2 rounded bg-slate-900/60 border border-cyan-500/20">
+            <span class="text-slate-300">OpenRouter (Active)</span>
+            <span class="text-[10px] text-emerald-400 font-mono">CONNECTED</span>
+          </div>
+          <div class="flex items-center justify-between p-2 rounded bg-slate-900/60 border border-cyan-500/20">
+            <span class="text-slate-300">Google Gemini</span>
+            <span class="text-[10px] text-amber-400 font-mono">STANDBY / QUOTA</span>
+          </div>
+          <div class="flex items-center justify-between p-2 rounded bg-slate-900/60 border border-cyan-500/20">
+            <span class="text-slate-300">NVIDIA NIM</span>
+            <span class="text-[10px] text-cyan-400 font-mono">INTEGRATED</span>
+          </div>
+          <div class="flex items-center justify-between p-2 rounded bg-slate-900/60 border border-cyan-500/20">
+            <span class="text-slate-300">LLM7.io Proxy</span>
+            <span class="text-[10px] text-cyan-400 font-mono">CONFIGURED</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="hud-glass-panel p-5">
+        <h2 class="text-xs uppercase tracking-widest text-cyan-400 mb-3 font-semibold">Supported Languages</h2>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <span class="px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-400/40 text-cyan-200">English (Refined)</span>
+          <span class="px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-400/40 text-cyan-200">हिन्दी (Hindi)</span>
+          <span class="px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-400/40 text-cyan-200">Hinglish</span>
+        </div>
+      </div>
+
+      <!-- Safe Tools -->
+      <div class="hud-glass-panel p-5">
+        <h2 class="text-xs uppercase tracking-widest text-cyan-400 mb-3 font-semibold">Deterministic Tools</h2>
+        <ul class="text-xs space-y-1.5 text-slate-300 font-mono">
+          <li>✓ Math / Calculator Engine</li>
+          <li>✓ Stark Synchronized Clocks</li>
+          <li>✓ Unit & Physical Converter</li>
+          <li>✓ Document Search & RAG</li>
+          <li>✓ Web Grounding (Tavily)</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="/js/jarvis-client.js"></script>
+</body>
+</html>

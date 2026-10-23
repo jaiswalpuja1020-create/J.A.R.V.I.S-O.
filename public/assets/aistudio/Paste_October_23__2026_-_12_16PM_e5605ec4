@@ -1,0 +1,1057 @@
+# PROJECT: J.A.R.V.I.S.-O
+
+## MASTER FULL-STACK DEVELOPMENT PROMPT
+
+You are a senior full-stack JavaScript engineer, AI integration architect, cybersecurity engineer, UI/UX designer, and software tester.
+
+Your task is to BUILD a functional, modular, secure, responsive AI assistant web application named J.A.R.V.I.S.-O.
+
+Do not merely describe the application or provide a tutorial. Create the actual project files, implement the application, run available checks, and fix errors wherever the environment allows.
+
+If the complete application is too large to implement reliably in one generation, build it incrementally while preserving working functionality.
+
+==================================================
+
+1. PROJECT IDENTITY
+   ==================================================
+
+Official project name: J.A.R.V.I.S.-O
+
+Assistant display name: J.A.R.V.I.S.-O
+
+Personality:
+
+* Futuristic
+* Professional
+* Helpful
+* Intelligent
+* Calm and precise
+* Friendly but not overly casual
+
+Default language: Auto-detect.
+
+Supported languages:
+
+* Hindi
+* English
+* Hinglish
+
+Primary objective:
+
+Create a movie-inspired, futuristic AI assistant that combines conversational AI, browser voice interaction, multi-provider AI routing, conversation memory, web search, file search, deterministic JavaScript tools, and a responsive command-center interface.
+
+The application must work on:
+
+* Android smartphones
+* iPhones
+* Tablets
+* Laptops
+* Desktop computers
+
+Do not claim to reproduce every fictional Iron Man capability. Implement real features that can be supported by the selected APIs, browser capabilities, permissions, and deployment environment.
+
+==================================================
+2. NON-NEGOTIABLE TECHNOLOGY STACK
+==================================
+
+Frontend:
+
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* Fetch API
+* Browser-supported Web APIs
+
+Backend:
+
+* Node.js
+* Express.js
+* JavaScript ES modules where supported
+* REST API
+* dotenv for local development
+
+Requirements:
+
+* No React.
+* No JSX.
+* No Vue.
+* No Angular.
+* No frontend framework.
+* No TypeScript.
+* No Python.
+* No direct AI API requests from frontend JavaScript.
+
+Use native HTML, CSS, and JavaScript for the entire frontend.
+
+Use a modular backend with separate provider adapters, services, routes, middleware, and tools.
+
+Choose maintained and compatible npm packages. Avoid unnecessary dependencies.
+
+If Google AI Studio's default template uses React, replace the frontend with a genuine Vanilla JavaScript implementation while preserving the supported server runtime.
+
+==================================================
+3. EXACTLY FOUR APPROVED AI API PROVIDERS
+=========================================
+
+The application may integrate only these four direct AI API providers:
+
+1. Gemini API
+2. NVIDIA API
+3. LLM7.io API
+4. OpenRouter API
+
+No fifth direct AI model provider is permitted.
+
+Google AI Studio is the development environment, not an additional application provider.
+
+Provider requirements:
+
+GEMINI:
+
+* Default provider.
+* Use the official Gemini API.
+* Prefer the maintained official JavaScript SDK when appropriate.
+* Read GEMINI_API_KEY exclusively from server-side configuration.
+* Use a verified, currently available model ID.
+
+NVIDIA:
+
+* Use NVIDIA's official documented API endpoint and supported authentication.
+* Verify the exact endpoint, model identifier, request format, and response format.
+* Do not assume every NVIDIA service uses the same API format.
+
+LLM7.IO:
+
+* Use the official LLM7.io API.
+* Verify its documented endpoint, authentication, model availability, and response format.
+* Use the documented OpenAI-compatible interface where applicable.
+
+OPENROUTER:
+
+* Use the official OpenRouter API.
+* Use its documented API endpoint and supported authentication.
+* Retrieve or verify available model IDs.
+* Permit only model IDs selected from valid provider configuration or a verified model list.
+
+For all providers:
+
+* Never invent an endpoint, model ID, pricing, or free-tier entitlement.
+* Never claim a provider is configured or operational without verification.
+* Never assume a provider supports streaming, image input, audio, tools, or structured output without checking its actual capabilities.
+* Keep provider-specific logic isolated inside its adapter.
+
+Each provider adapter must return a normalized response containing:
+
+{
+"success": true,
+"provider": "gemini",
+"model": "actual-model-id",
+"text": "assistant response",
+"usage": null,
+"requestId": null
+}
+
+The provider and model fields must reflect the actual successful request. Usage and requestId must be populated only when genuinely available.
+
+For failures, return a safe, structured error without exposing credentials.
+
+==================================================
+4. ENVIRONMENT CONFIGURATION
+============================
+
+Support the following configuration:
+
+JARVIS_O_NAME=J.A.R.V.I.S.-O
+
+JARVIS_O_PERSONALITY=futuristic, professional, helpful, intelligent
+
+JARVIS_DEFAULT_LANGUAGE=auto
+
+ENABLE_WEB_SEARCH=true
+ENABLE_FILE_SEARCH=true
+ENABLE_CONVERSATION_MEMORY=true
+
+AI_DEFAULT_PROVIDER=gemini
+AI_FALLBACK_ENABLED=true
+AI_MAX_FALLBACK_ATTEMPTS=2
+
+GEMINI_API_KEY=
+NVIDIA_API_KEY=
+LLM7_API_KEY=
+OPENROUTER_API_KEY=
+
+PORT=3000
+NODE_ENV=development
+
+Also support the following optional configuration:
+
+ALLOWED_ORIGINS=
+AI_REQUEST_TIMEOUT_MS=30000
+AI_MAX_OUTPUT_TOKENS=2048
+MAX_CONVERSATION_MESSAGES=30
+MAX_UPLOAD_SIZE_MB=10
+SESSION_TTL_MINUTES=60
+
+SEARCH_PROVIDER=
+SEARCH_API_KEY=
+
+SEARCH_PROVIDER and SEARCH_API_KEY are optional configuration fields for a separately selected web-search service, not AI model providers.
+
+If an additional search service has not been configured, web search must report that it is unavailable.
+
+Never add another AI model provider to implement web search.
+
+Create:
+
+* .env.example
+* .gitignore
+* A centralized environment-validation module.
+
+Do not commit a real .env file.
+
+Do not expose API keys through frontend JavaScript, HTML, browser storage, URLs, error messages, logs, or public configuration endpoints.
+
+In Google AI Studio, use its server-side Secrets configuration for credentials. When deploying elsewhere, use the hosting platform's server-side environment variables.
+
+==================================================
+5. RESPONSIVE FUTURISTIC INTERFACE
+==================================
+
+Create an original, futuristic AI command-center interface inspired by cinematic science-fiction assistants.
+
+Visual design:
+
+* Dark navy and near-black background.
+* Electric cyan and blue highlights.
+* Subtle glass-effect panels.
+* Animated central AI orb or waveform.
+* Fine grid and HUD-inspired decorative elements.
+* Clear typography and readable contrast.
+* Restrained animations.
+* Professional, premium appearance.
+* Clean conversation bubbles.
+* Consistent spacing and iconography.
+
+Main dashboard:
+
+A. Header
+
+* J.A.R.V.I.S.-O branding.
+* Connection status.
+* Active provider.
+* Settings button.
+* Mobile navigation control.
+
+B. Main assistant panel
+
+* Animated AI orb.
+* Assistant status.
+* Listening indicator.
+* Thinking indicator.
+* Speaking indicator.
+* Error indicator.
+* Start and stop voice controls.
+
+C. Conversation area
+
+* User messages.
+* Assistant responses.
+* Loading indicator.
+* Error messages.
+* Retry action where appropriate.
+* Copy response.
+* Clear conversation.
+* New conversation.
+
+D. Input area
+
+* Text input.
+* Send button.
+* Microphone button.
+* Stop-speaking button.
+* File attachment button.
+* Web-search toggle.
+
+E. Sidebar or responsive drawer
+
+* Conversation history.
+* Provider selection.
+* Settings.
+* Notes.
+* Tasks.
+* Uploaded documents.
+
+F. Settings screen
+
+* Active AI provider.
+* Provider configuration status.
+* Provider test action.
+* Default language.
+* Voice settings.
+* Memory toggle.
+* Web-search toggle.
+* File-search toggle.
+* Reduced-motion preference.
+
+Do not display secret API keys in the settings interface.
+
+==================================================
+6. RESPONSIVE DESIGN REQUIREMENTS
+=================================
+
+Mobile:
+320–767 px.
+
+Tablet:
+768–1023 px.
+
+Desktop:
+1024 px and above.
+
+Use:
+
+* CSS Grid.
+* Flexbox.
+* Media queries.
+* Semantic HTML.
+* Responsive typography.
+* Appropriate viewport settings.
+
+Requirements:
+
+* No horizontal overflow.
+* Touch targets preferably at least 44 × 44 CSS pixels.
+* Mobile-friendly chat input.
+* Collapsible navigation.
+* Scrollable conversation history.
+* Usable settings dialogs.
+* Keyboard-accessible controls.
+* Visible focus indicators.
+* Sufficient contrast.
+* Reduced-motion support.
+* Appropriate handling of mobile browser viewport changes.
+
+Use CSS custom properties for theme colors, spacing, typography, and animation settings.
+
+The interface must remain usable when animations are disabled.
+
+Do not use animations as a substitute for real application status.
+
+==================================================
+7. PROJECT STRUCTURE
+====================
+
+Create a modular project similar to:
+
+public/
+index.html
+css/
+main.css
+responsive.css
+animations.css
+themes.css
+js/
+app.js
+api-client.js
+chat.js
+voice.js
+memory.js
+settings.js
+ui.js
+assets/
+
+src/
+server.js
+
+config/
+env.js
+ai-config.js
+
+routes/
+chat.routes.js
+providers.routes.js
+search.routes.js
+files.routes.js
+conversations.routes.js
+settings.routes.js
+health.routes.js
+
+providers/
+geminiProvider.js
+nvidiaProvider.js
+llm7Provider.js
+openrouterProvider.js
+
+services/
+ai-router.js
+conversation.service.js
+memory.service.js
+search.service.js
+file.service.js
+
+tools/
+calculator.js
+dateTime.js
+textTools.js
+unitConversion.js
+jsonValidator.js
+webSearch.js
+fileSearch.js
+notes.js
+tasks.js
+
+middleware/
+errorHandler.js
+validateRequest.js
+rateLimiter.js
+
+tests/
+providers.test.js
+router.test.js
+memory.test.js
+validation.test.js
+tools.test.js
+files.test.js
+
+.env.example
+.gitignore
+package.json
+README.md
+
+Add additional files when needed.
+
+If the execution environment requires a different directory structure, adapt it without sacrificing modularity.
+
+==================================================
+8. FOUR-PROVIDER AI ROUTER
+==========================
+
+Create a central AI routing service.
+
+Default provider:
+Gemini.
+
+Allowed providers:
+
+* gemini
+* nvidia
+* llm7
+* openrouter
+
+Provider selection must be validated against this allowlist.
+
+Required capabilities:
+
+* Explicit provider selection.
+* Default provider selection.
+* Provider health/configuration status.
+* Provider-specific request construction.
+* Response normalization.
+* Timeout handling.
+* Error normalization.
+* Controlled fallback.
+* Maximum fallback-attempt enforcement.
+* Request logging without secrets.
+* Provider and model reporting.
+
+Fallback rules:
+
+1. Attempt the selected configured provider.
+2. Retry eligible transient failures only within configured limits.
+3. If fallback is enabled, try another configured and eligible approved provider.
+4. Do not try the same provider repeatedly within a single fallback chain.
+5. Respect AI_MAX_FALLBACK_ATTEMPTS.
+6. Default maximum fallback attempts: two.
+7. Do not retry indefinitely.
+8. Do not treat invalid credentials as a reason for repeated retries.
+9. Do not bypass authentication or quota restrictions.
+10. Do not automatically switch to a provider that lacks the requested capability.
+11. Preserve the conversation context when switching providers.
+12. Return the actual provider used.
+
+Do not silently switch providers when fallback is disabled.
+
+A missing API key must produce an unconfigured provider status.
+
+A provider test must perform a genuine request when credentials are configured. Otherwise, clearly report that the provider cannot be tested.
+
+Never simulate successful provider responses.
+
+==================================================
+9. AI CONVERSATION FEATURES
+===========================
+
+Implement:
+
+* Natural-language conversation.
+* Context-aware responses.
+* Multi-turn conversations.
+* Hindi, English, and Hinglish.
+* Automatic language preference.
+* Summarization.
+* Translation.
+* Grammar correction.
+* Coding assistance.
+* Code explanation.
+* Error diagnosis.
+* Mathematical assistance.
+* Research assistance.
+* Structured responses.
+* Creative writing.
+* Idea generation.
+* Clarification questions.
+* Intent classification.
+* Step-by-step planning.
+* Task decomposition.
+
+Use conversation context within reasonable token and message limits.
+
+Do not assume the model always reasons correctly.
+
+For deterministic operations, use validated JavaScript tools rather than relying solely on generated answers.
+
+Treat model-generated content as untrusted data.
+
+Do not automatically execute generated code, shell commands, or instructions.
+
+==================================================
+10. CONVERSATION MEMORY
+=======================
+
+Initial implementation:
+Server-side JavaScript in-memory storage.
+
+Requirements:
+
+* Multiple conversations.
+* Unique conversation IDs.
+* Message history.
+* Recent context.
+* New conversation.
+* Conversation reset.
+* Conversation deletion.
+* Session expiry.
+* Maximum message count.
+* Maximum context size.
+* Memory enable/disable setting.
+* User/session isolation.
+* Provider switching without automatically deleting history.
+
+Do not store every user's conversations in one shared global history.
+
+Associate each conversation with an independently validated session.
+
+Do not trust an arbitrary client-supplied conversation ID as authorization.
+
+Use secure session identifiers and an appropriate session strategy.
+
+Document that in-memory conversations disappear when the server restarts and are not automatically shared across multiple server instances.
+
+Do not claim cross-device synchronization.
+
+Persistent database storage is a later extension.
+
+==================================================
+11. VOICE INTERACTION
+=====================
+
+Implement browser-supported voice features.
+
+Voice input:
+
+* Speech recognition when supported.
+* Hindi recognition where supported.
+* English recognition where supported.
+* Hinglish handling through transcription and model processing.
+* Push-to-talk.
+* Listening indicator.
+* Microphone permission handling.
+* Recognition failure handling.
+* Text-input fallback.
+
+Voice output:
+
+* Browser text-to-speech.
+* Available voice selection.
+* Language-aware speech settings.
+* Speaking indicator.
+* Stop-speaking button.
+* Graceful handling of missing voices.
+
+Important:
+
+* Check browser feature support before use.
+* Request microphone access only after user interaction.
+* Do not activate continuous microphone recording without explicit permission and visible controls.
+* Do not claim all browsers support speech recognition.
+* Do not claim browser text-to-speech is AI-generated audio.
+* Do not claim that a model supports real-time audio without verifying its API.
+* Keep real-time conversational audio as a separate future milestone.
+
+==================================================
+12. REAL WEB SEARCH
+===================
+
+ENABLE_WEB_SEARCH must control a genuine search implementation.
+
+Create a modular server-side web-search service.
+
+Use a documented and verified search API when configured.
+
+Features:
+
+* Search query validation.
+* Server-side search requests.
+* Search result titles.
+* Snippets.
+* Source URLs.
+* Duplicate removal.
+* Relevance filtering.
+* Source-aware AI summaries.
+* Search error handling.
+* Search timeout handling.
+* Search enable/disable control.
+
+The AI must distinguish retrieved facts from its own explanations.
+
+Display source links alongside relevant claims.
+
+Do not fabricate search results, source URLs, or citations.
+
+If the search service is missing or unavailable, clearly report the limitation.
+
+Do not pretend that an AI model's internal knowledge is live web search.
+
+Do not add a fifth AI model provider.
+
+==================================================
+13. REAL FILE SEARCH
+====================
+
+ENABLE_FILE_SEARCH must control an actual document retrieval implementation.
+
+Initial supported formats:
+
+* TXT
+* MD
+* JSON
+* CSV
+* PDF
+* DOCX
+
+Implement:
+
+* File upload.
+* File-size limits.
+* File-type allowlisting.
+* MIME validation.
+* File-signature checks where practical.
+* Safe document parsing.
+* Text extraction.
+* Document chunking.
+* Searchable indexing.
+* Relevant chunk retrieval.
+* Question answering from retrieved content.
+* Source filename.
+* Page or section references where available.
+* File removal.
+* Temporary-file cleanup.
+* Parsing-error reporting.
+
+Use established document-parsing libraries.
+
+Never execute uploaded content.
+
+Treat all document text as untrusted data, including embedded instructions that attempt to override application rules.
+
+Do not send complete private documents to an external model unless necessary for the requested task.
+
+Use the minimum relevant context required for an answer.
+
+Enforce file ownership and session access controls.
+
+Do not claim a document is indexed until indexing has succeeded.
+
+Do not claim persistent document storage when the hosting environment does not guarantee it.
+
+==================================================
+14. SAFE JAVASCRIPT TOOL REGISTRY
+=================================
+
+Create a centralized, allowlisted tool registry.
+
+Initial tools:
+
+1. Calculator.
+2. Date and time.
+3. Text utilities.
+4. Unit conversion.
+5. JSON validation.
+6. Conversation utilities.
+7. Web search.
+8. File search.
+9. In-app notes.
+10. In-app tasks.
+
+Each tool must define:
+
+* Unique tool name.
+* Description.
+* Input schema.
+* Argument validation.
+* Permission requirements.
+* Execution limits.
+* Structured output.
+* Error handling.
+
+Use a strict registry.
+
+Never execute arbitrary model-generated JavaScript.
+
+Do not use eval or unrestricted Function constructors to run model output.
+
+Do not expose unrestricted filesystem, operating-system, shell, or desktop-control capabilities.
+
+Require explicit confirmation for consequential actions.
+
+Clearly distinguish actual tools from suggestions made by the AI.
+
+==================================================
+15. EXPRESS REST API
+====================
+
+Implement the following endpoints:
+
+GET /api/health
+
+POST /api/chat
+
+GET /api/providers
+
+POST /api/providers/test
+
+POST /api/search
+
+POST /api/files/upload
+
+POST /api/files/search
+
+GET /api/conversations
+
+POST /api/conversations
+
+DELETE /api/conversations/:id
+
+GET /api/settings
+
+Add other endpoints only when needed.
+
+Use consistent JSON response formats.
+
+Successful response example:
+
+{
+"success": true,
+"data": {},
+"error": null
+}
+
+Error response example:
+
+{
+"success": false,
+"data": null,
+"error": {
+"code": "PROVIDER_UNAVAILABLE",
+"message": "The selected AI provider is unavailable."
+}
+}
+
+Do not expose internal stack traces in production responses.
+
+Validate all request bodies, query parameters, and identifiers.
+
+Apply request-size limits.
+
+Apply appropriate rate limits.
+
+Restrict CORS to configured origins.
+
+Use secure production error handling.
+
+Validate requested providers against the approved allowlist.
+
+Never return API keys or environment variables to clients.
+
+==================================================
+16. SECURITY REQUIREMENTS
+=========================
+
+Implement:
+
+* Server-side secrets.
+* Environment validation.
+* Input validation.
+* Provider allowlisting.
+* Request timeouts.
+* Rate limiting.
+* Security headers.
+* Restricted CORS.
+* Safe file handling.
+* Upload limits.
+* Session isolation.
+* Secure error handling.
+* Dependency maintenance.
+* Secret-free logging.
+* Production/development configuration separation.
+
+Use Helmet where appropriate.
+
+Avoid unsafe HTML insertion. Render user and model text as text unless a carefully sanitized Markdown renderer is implemented.
+
+Prevent path traversal and unsafe file access.
+
+Avoid exposing detailed provider errors that contain sensitive information.
+
+Do not use hardcoded secrets.
+
+Do not disable security checks to make integrations work.
+
+Document any remaining security limitations.
+
+==================================================
+17. FREE-TIER AND USAGE MANAGEMENT
+==================================
+
+Support free-tier usage where the selected provider, account, model, and current terms permit it.
+
+Do not assume every model or API request is free.
+
+For each provider:
+
+* Display configuration status.
+* Display the verified model ID.
+* Report provider errors accurately.
+* Handle quota exhaustion.
+* Handle rate limits.
+* Respect the provider's current restrictions.
+* Avoid uncontrolled retries.
+* Avoid unexpected paid-model selection.
+
+Do not claim that NVIDIA, Gemini, LLM7.io, or OpenRouter is universally free.
+
+Use official documentation and verified configuration to determine availability.
+
+If an account requires billing, credits, or a paid model, communicate this clearly.
+
+For OpenRouter, allow selection of an explicitly verified free model when one is currently available.
+
+Do not silently choose a paid model as a fallback for a free-model request.
+
+Keep usage reporting accurate and provider-dependent.
+
+==================================================
+18. TESTING
+===========
+
+Create automated tests for:
+
+* Environment validation.
+* Missing credentials.
+* Provider configuration.
+* Response normalization.
+* Provider timeouts.
+* Invalid credentials.
+* Rate-limit errors.
+* Controlled fallback.
+* Fallback-attempt limits.
+* Disabled fallback.
+* Conversation isolation.
+* Conversation history.
+* Session expiry.
+* Tool argument validation.
+* File upload restrictions.
+* Document extraction errors.
+* Search failure behavior.
+* Error response formats.
+
+Use mocked provider responses in automated tests.
+
+Do not require real API keys for the basic test suite.
+
+Provide a separate provider connectivity test for each configured provider.
+
+Run the tests where execution is supported.
+
+Never claim that tests passed unless they were actually executed.
+
+Report any tests that could not be run.
+
+==================================================
+19. DEPLOYMENT AND DOCUMENTATION
+================================
+
+Prepare the application for Node.js hosting.
+
+Include:
+
+* package.json.
+* Start script.
+* Test script.
+* Environment documentation.
+* .env.example.
+* .gitignore.
+* README.md.
+* Health endpoint.
+* Production configuration.
+* Deployment instructions.
+
+Support Render or another compatible Node.js hosting platform.
+
+Ensure the application listens on the configured PORT.
+
+Document:
+
+* Installing dependencies.
+* Running locally.
+* Configuring each API key.
+* Testing providers.
+* Running automated tests.
+* Deploying the application.
+* Configuring hosting secrets.
+* Setting allowed origins.
+* Troubleshooting common errors.
+
+Do not assume the deployment filesystem is persistent.
+
+Do not claim that an application is deployed until deployment has actually succeeded.
+
+Explain the difference between an application preview and a publicly deployed application.
+
+==================================================
+20. IMPLEMENTATION MILESTONES
+=============================
+
+Build the project in this order.
+
+MILESTONE 1:
+Create the responsive futuristic frontend with functional navigation and chat layout.
+
+MILESTONE 2:
+Create the Node.js Express server and health endpoint.
+
+MILESTONE 3:
+Implement Gemini API integration.
+
+MILESTONE 4:
+Implement the NVIDIA API adapter.
+
+MILESTONE 5:
+Implement the LLM7.io adapter.
+
+MILESTONE 6:
+Implement the OpenRouter adapter.
+
+MILESTONE 7:
+Implement provider configuration, testing, and controlled fallback.
+
+MILESTONE 8:
+Implement isolated conversation memory.
+
+MILESTONE 9:
+Implement browser voice input and output.
+
+MILESTONE 10:
+Implement genuine web search.
+
+MILESTONE 11:
+Implement file upload, extraction, and retrieval.
+
+MILESTONE 12:
+Implement the allowlisted JavaScript tool registry.
+
+MILESTONE 13:
+Implement security hardening and automated tests.
+
+MILESTONE 14:
+Prepare deployment configuration and documentation.
+
+After each milestone:
+
+1. Inspect the generated code.
+2. Run available checks.
+3. Fix errors before proceeding.
+4. Preserve working functionality.
+5. Update the documentation.
+6. Report completed, incomplete, and blocked features separately.
+
+Do not create fake buttons, fake provider responses, simulated search results, or placeholder success messages for features that are not implemented.
+
+If a capability cannot be implemented or verified, create an honest unavailable state and document the missing requirement.
+
+==================================================
+21. FINAL ACCEPTANCE CRITERIA
+=============================
+
+The initial release is acceptable when:
+
+1. The application uses HTML, CSS, and Vanilla JavaScript.
+2. The backend uses Node.js and Express.js.
+3. The four approved provider adapters are implemented.
+4. Gemini is the default provider.
+5. Provider credentials remain server-side.
+6. Provider tests perform real requests when configured.
+7. Fallback respects its configured attempt limit.
+8. Conversation context works across multiple turns.
+9. Conversations are isolated between authorized sessions.
+10. Hindi, English, and Hinglish are supported to the extent of the selected model and browser.
+11. Voice features handle unsupported browsers gracefully.
+12. Web search retrieves actual external results.
+13. File search retrieves actual document content.
+14. JavaScript tools validate their inputs.
+15. API routes return consistent responses.
+16. Security controls are implemented.
+17. Automated tests are included.
+18. Mobile, tablet, and desktop layouts work.
+19. README and deployment instructions are complete.
+20. Remaining limitations are accurately documented.
+
+==================================================
+22. FIRST ACTION
+================
+
+Start now.
+
+First inspect the available project environment.
+
+Then create the smallest working end-to-end J.A.R.V.I.S.-O application using:
+
+* Responsive Vanilla JavaScript frontend.
+* Node.js and Express.js backend.
+* Gemini API integration.
+* Server-side API key configuration.
+* Basic conversation history.
+* Health endpoint.
+* Consistent error handling.
+
+Run the available checks.
+
+After this works, proceed through the remaining milestones without replacing the required technology stack.
+
+Do not stop after generating a design or a plan.
+
+Create actual files and functional implementations wherever the environment supports them.
+
+At the end, provide:
+
+* A summary of implemented features.
+* The project file structure.
+* Required environment variables.
+* Setup and testing instructions.
+* Features still pending.
+* Known limitations.
+* Next steps for completing the application.
+
+PROJECT NAME: J.A.R.V.I.S.-O
+
+Build a secure, modular, responsive, and genuinely functional AI assistant.

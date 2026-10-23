@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #020b18;
+    --bg-secondary: #04152a;
+    --bg-panel: #031326;
+    --bg-elevated: #061c35;
+
+    --cyan-primary: #00bfff;
+    --cyan-bright: #19cfff;
+    --cyan-soft: #66ddff;
+    --cyan-glow: rgba(0, 191, 255, 0.45);
+
+    --text-primary: #e8f5ff;
+    --text-secondary: #8fbce8;
+    --text-muted: #638bb5;
+
+    --status-success: #36f59a;
+    --status-warning: #ffd84d;
+    --status-error: #ff5c76;
+
+    --border-subtle: rgba(0, 160, 255, 0.28);
+    --border-active: rgba(0, 191, 255, 0.90);
+  }
+}
+
+body {
+  background-color: #020b18;
+  color: #e8f5ff;
+  font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Futuristic Fonts */
+.font-orbitron {
+  font-family: 'Orbitron', monospace, sans-serif;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.font-tech {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Iron Man Hologram Scanline Overlay */
+.hud-scanline-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 243, 255, 0.025) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.01),
+    rgba(0, 255, 0, 0.005),
+    rgba(0, 0, 255, 0.01)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Subtle Sci-Fi Grid */
+.hud-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 191, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 191, 255, 0.04) 1px, transparent 1px);
+}
+
+/* 3D Holographic Perspective */
+.perspective-container {
+  perspective: 1200px;
+}
+
+.hologram-panel {
+  background: rgba(3, 19, 38, 0.78);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 191, 255, 0.28);
+  box-shadow: 0 0 25px rgba(0, 160, 255, 0.08), inset 0 0 20px rgba(0, 191, 255, 0.03);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hologram-panel:hover {
+  border-color: rgba(0, 191, 255, 0.55);
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.16), inset 0 0 25px rgba(0, 191, 255, 0.05);
+}
+
+/* Speech Bubble Callout Tails (pointing directly to central Arc Reactor) */
+.callout-bubble-left {
+  position: relative;
+}
+.callout-bubble-left::after {
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid #00bfff;
+  filter: drop-shadow(0 0 4px #00bfff);
+}
+
+.callout-bubble-right {
+  position: relative;
+}
+.callout-bubble-right::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 9px solid #00bfff;
+  filter: drop-shadow(0 0 4px #00bfff);
+}
+
+/* Central Horizontal Laser Flare Beam */
+.reactor-flare-beam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.8), #ffffff, rgba(0, 243, 255, 0.8), transparent);
+  box-shadow: 0 0 15px #00f3ff, 0 0 30px #00bfff;
+  pointer-events: none;
+}
+
+/* Glassmorphism Panel with Stark Cyan Corner Accents */
+.stark-panel {
+  background: rgba(6, 16, 31, 0.78);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 243, 255, 0.22);
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.06), inset 0 0 15px rgba(0, 243, 255, 0.03);
+  position: relative;
+}
+
+.stark-panel-corners::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #00f3ff;
+  border-left: 2px solid #00f3ff;
+  pointer-events: none;
+}
+
+.stark-panel-corners::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid #00f3ff;
+  border-right: 2px solid #00f3ff;
+  pointer-events: none;
+}
+
+/* Concentric Arc Reactor Ring Animations */
+@keyframes spin-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-ccw {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes arc-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.6), inset 0 0 20px rgba(0, 243, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 45px rgba(0, 243, 255, 0.9), inset 0 0 35px rgba(0, 243, 255, 0.8);
+  }
+}
+
+@keyframes wave-bounce {
+  0%, 100% { height: 6px; }
+  50% { height: 28px; }
+}
+
+.animate-spin-slow {
+  animation: spin-cw 20s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spin-ccw 14s linear infinite;
+}
+
+.animate-spin-medium {
+  animation: spin-cw 8s linear infinite;
+}
+
+.animate-arc-glow {
+  animation: arc-pulse 3s ease-in-out infinite;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow,
+  .animate-spin-reverse-slow,
+  .animate-spin-medium,
+  .animate-arc-glow {
+    animation: none !important;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(5, 11, 20, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 243, 255, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 243, 255, 0.7);
+}

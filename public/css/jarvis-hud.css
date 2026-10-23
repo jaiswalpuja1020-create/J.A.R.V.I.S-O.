@@ -1,0 +1,197 @@
+/* public/css/jarvis-hud.css - Pure CSS Holographic HUD Styles for J.A.R.V.I.S.-O */
+
+:root {
+  --bg-primary: #020b18;
+  --bg-secondary: #051329;
+  --bg-panel: rgba(5, 19, 41, 0.75);
+  --cyan-primary: #00bfff;
+  --cyan-glow: #00e5ff;
+  --cyan-dim: #007799;
+  --blue-accent: #0055ff;
+  --border-cyan: rgba(0, 191, 255, 0.35);
+  --border-cyan-glow: rgba(0, 229, 255, 0.65);
+  --text-white: #ffffff;
+  --text-cyan: #8ae8ff;
+  --text-dim: #4a7a99;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-cyan);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(0, 191, 255, 0.08) 0%, transparent 60%),
+    linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Glassmorphic Container */
+.hud-glass-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px 0 rgba(0, 191, 255, 0.12), inset 0 0 16px rgba(0, 191, 255, 0.05);
+  border-radius: 14px;
+}
+
+/* 3D Arc Reactor Hologram */
+.reactor-container {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes spin-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-ccw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes pulse-core {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.8));
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+    filter: drop-shadow(0 0 45px rgba(0, 229, 255, 1));
+  }
+}
+
+.spin-clockwise {
+  animation: spin-cw 30s linear infinite;
+  transform-origin: center;
+}
+
+.spin-counter {
+  animation: spin-ccw 24s linear infinite;
+  transform-origin: center;
+}
+
+.pulse-glow {
+  animation: pulse-core 3s ease-in-out infinite;
+}
+
+/* Callout Bubbles with Pointer Tails */
+.callout-bubble {
+  position: relative;
+  background: rgba(4, 18, 38, 0.85);
+  border: 1px solid var(--border-cyan-glow);
+  box-shadow: 0 4px 20px rgba(0, 191, 255, 0.18), inset 0 0 10px rgba(0, 191, 255, 0.1);
+  border-radius: 24px;
+  padding: 10px 18px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.callout-bubble:hover {
+  background: rgba(0, 191, 255, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
+}
+
+.bubble-left::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 8px solid rgba(0, 229, 255, 0.6);
+}
+
+.bubble-right::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 8px solid rgba(0, 229, 255, 0.6);
+}
+
+/* Feature Cards Grid */
+.feature-card {
+  background: rgba(6, 22, 45, 0.7);
+  border: 1px solid rgba(0, 191, 255, 0.25);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.feature-card:hover {
+  background: rgba(0, 191, 255, 0.15);
+  border-color: rgba(0, 229, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 191, 255, 0.25);
+}
+
+/* Bottom Console */
+.voice-composer {
+  background: rgba(4, 16, 35, 0.95);
+  border: 1px solid var(--border-cyan);
+  border-radius: 9999px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 191, 255, 0.1);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mic-btn-glowing {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00bfff, #0055ff);
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mic-btn-glowing:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.9);
+}
+
+.mic-btn-glowing.recording {
+  background: linear-gradient(135deg, #ff0055, #ff5500);
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.9);
+  animation: pulse-core 1.2s infinite;
+}

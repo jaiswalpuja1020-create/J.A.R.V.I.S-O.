@@ -1,0 +1,6 @@
+{
+  "name": "J.A.R.V.I.S.-O - Iron Man AI Command Center",
+  "description": "Futuristic movie-inspired J.A.R.V.I.S.-O AI assistant and Stark Industries HUD command center with real-time voice interaction, multi-provider routing, suit diagnostics, and intelligent tools.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
